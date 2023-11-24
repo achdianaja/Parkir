@@ -91,40 +91,45 @@ public class Parkir {
 
         System.out.println("Plat Nomor : " + platNomor);
         // kondisi ini dimana jika kendaraan melebihi 1 jam maka akan di kenai denda sesuai dengan jenis kendaraannya
-        if (jenis == 1) {
-            System.out.println("jenis kendaraan : Mobil ");
-            if (selisih <= 3600) {
-                if (statusDenda != true) {
-                    System.out.println("Status Denda : " + statusDenda);
+        switch(jenis){
+            case 1:
+               System.out.println("jenis kendaraan : Mobil ");
+               if (selisih <= 3600) {
+                   if (statusDenda != true) {
+                       System.out.println("Status Denda : " + statusDenda);
+                   }
+                   bayar = 3000;
+                   System.out.println("Jumlah Bayar    : " + IdrFormat.format(bayar));
+               } else {
+                   statusDenda = true;
+                   if (statusDenda == true) {
+                       System.out.println("Status Denda : " + statusDenda);
+                       System.out.println("Message : Terkena Denda Sebesar " + IdrFormat.format(lamaParkir.Jam * 2000));
+                   }
+                   bayar = 3000 + lamaParkir.Jam * 2000;
+                   System.out.println("Jumlah Bayar    : " + IdrFormat.format(bayar));
+               }   
+            break;
+            case 2:
+                System.out.println("jenis kendarann : Motor");
+                if (selisih <= 3600) {
+                    if (statusDenda != true) {
+                        System.out.println("Status Denda : " + statusDenda);
+                    }
+                    bayar = 2000;
+                    System.out.println("Jumlah Bayar    : " + IdrFormat.format(bayar));
+                } else {
+                    statusDenda = true;
+                    if (statusDenda == true) {
+                        System.out.println("Status Denda : " + statusDenda);
+                        System.out.println("Message : Terkena Denda Sebesar " + IdrFormat.format(lamaParkir.Jam * 1000));
+                    }
+                    bayar = 2000 + lamaParkir.Jam * 1000; // denda motor akan dikalikan 1000 dari dari selisih jam nya
+                    System.out.println("Jumlah Bayar    : " + IdrFormat.format(bayar));
                 }
-                bayar = 3000;
-                System.out.println("Jumlah Bayar    : " + IdrFormat.format(bayar));
-            } else {
-                statusDenda = true;
-                if (statusDenda == true) {
-                    System.out.println("Status Denda : " + statusDenda);
-                    System.out.println("Message : Terkena Denda Sebesar " + IdrFormat.format(lamaParkir.Jam * 2000));
-                }
-                bayar = 3000 + lamaParkir.Jam * 2000;
-                System.out.println("Jumlah Bayar    : " + IdrFormat.format(bayar));
-            }
-        } else if (jenis == 2) {
-            System.out.println("jenis kendarann : Motor");
-            if (selisih <= 3600) {
-                if (statusDenda != true) {
-                    System.out.println("Status Denda : " + statusDenda);
-                }
-                bayar = 2000;
-                System.out.println("Jumlah Bayar    : " + IdrFormat.format(bayar));
-            } else {
-                statusDenda = true;
-                if (statusDenda == true) {
-                    System.out.println("Status Denda : " + statusDenda);
-                    System.out.println("Message : Terkena Denda Sebesar " + IdrFormat.format(lamaParkir.Jam * 1000));
-                }
-                bayar = 2000 + lamaParkir.Jam * 1000; // denda motor akan dikalikan 1000 dari dari selisih jam nya
-                System.out.println("Jumlah Bayar    : " + IdrFormat.format(bayar));
-            }
+            break;
+            default:
+            System.out.println("Maaf pilihan tidak terdaftar");
         }
     }
 }
